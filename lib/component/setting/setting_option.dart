@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SettingOP extends StatelessWidget {
   SettingOP({super.key, required this.ontap, required this.text});
 

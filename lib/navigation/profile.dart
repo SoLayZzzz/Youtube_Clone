@@ -203,41 +203,56 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget _buildOption() {
-    return Column(
-      children: [
-        OptionSelect(
-          icon: Icons.smart_display_outlined,
-          text: "Your Videos",
-          ontap: () {},
-        ),
-        OptionSelect(
-          icon: Icons.download_outlined,
-          text: "Downloads",
-          ontap: () {},
-        ),
-        _buildUnderLine(),
-        OptionSelect(
-          icon: Icons.movie_creation_outlined,
-          text: "Your movies",
-          ontap: () {},
-        ),
-        OptionSelect(
-          icon: Icons.video_call_outlined,
-          text: "Get YouTube Premium",
-          ontap: () {},
-        ),
-        _buildUnderLine(),
-        OptionSelect(
-          icon: Icons.timelapse,
-          text: "Time watched",
-          ontap: () {},
-        ),
-        OptionSelect(
-          icon: Icons.help_outline,
-          text: "Help & feedback",
-          ontap: () {},
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: OptionSelect(
+              icon: Icons.smart_display_outlined,
+              text: "Your Videos",
+              ontap: () {},
+            ),
+          ),
+          OptionSelect(
+            icon: Icons.download_outlined,
+            text: "Downloads",
+            ontap: () {},
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: _buildUnderLine(),
+          ),
+          OptionSelect(
+            icon: Icons.movie_creation_outlined,
+            text: "Your movies",
+            ontap: () {},
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: OptionSelect(
+              icon: Icons.video_call_outlined,
+              text: "Get YouTube Premium",
+              ontap: () {},
+            ),
+          ),
+          _buildUnderLine(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: OptionSelect(
+              icon: Icons.timelapse,
+              text: "Time watched",
+              ontap: () {},
+            ),
+          ),
+          OptionSelect(
+            icon: Icons.help_outline,
+            text: "Help & feedback",
+            ontap: () {},
+          ),
+        ],
+      ),
     );
   }
 

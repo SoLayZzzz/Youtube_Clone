@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_clone/navigation/add.dart';
 import 'package:youtube_clone/navigation/home.dart';
 import 'package:youtube_clone/navigation/profile.dart';
+import 'package:youtube_clone/navigation/short.dart';
+import 'package:youtube_clone/navigation/subscription.dart';
 
 class NavigaProvider extends ChangeNotifier {
   int _selectIndex = 0;
   List<NavigaEdit> item = [
     NavigaEdit(label: "Home", icon: Icons.home, widget: const HomePage()),
-    NavigaEdit(label: "Shorts", icon: Icons.person_2, widget: const Profile()),
+    NavigaEdit(
+        label: "Shorts", icon: Icons.person_2, widget: const ShortsScreen()),
     NavigaEdit(
         label: "",
         icon: Icons.add_circle_rounded,
-        widget: const HomePage(),
+        widget: const AddScreen(),
         size: 40.0),
     NavigaEdit(
       label: "Subscriptions",
       icon: Icons.subscriptions_outlined,
-      widget: const HomePage(),
+      widget: const SubcriptionScreen(),
     ),
     NavigaEdit(label: "You", icon: Icons.person_2, widget: const Profile()),
   ];

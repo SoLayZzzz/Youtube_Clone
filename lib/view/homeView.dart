@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_clone/category/homeCategory.dart';
 import 'package:youtube_clone/color/color.dart';
+import 'package:youtube_clone/view/videoPlay.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key, required this.datayt});
@@ -17,13 +18,33 @@ class HomeView extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Container(
-                  height: 210,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/forest.jpg"),
-                          fit: BoxFit.cover)),
+                InkWell(
+                  onTap: () => showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: white,
+                      context: context,
+                      builder: (context) {
+                        return FractionallySizedBox(
+                            heightFactor: 1,
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 300,
+                                  width: double.infinity,
+                                  color: white,
+                                  child: const VideoPlayEdit(),
+                                )
+                              ],
+                            ));
+                      }),
+                  child: Container(
+                    height: 210,
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/forest.jpg"),
+                            fit: BoxFit.cover)),
+                  ),
                 ),
                 const SizedBox(
                   height: 5,

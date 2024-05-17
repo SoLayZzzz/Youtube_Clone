@@ -10,11 +10,9 @@ class OptionSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        ontap;
-      },
+      onTap: ontap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15),
+        padding: const EdgeInsets.symmetric(vertical: 0),
         child: SizedBox(
           height: 30,
           width: double.infinity,

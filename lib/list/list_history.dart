@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_clone/color/color.dart';
 import 'package:youtube_clone/component/iconbotton.dart';
+import 'package:youtube_clone/view/botttomSheet.dart';
 
 class ListHistory extends StatelessWidget {
   const ListHistory({super.key});
@@ -45,12 +46,15 @@ class ListHistory extends StatelessWidget {
                                             color: black.withOpacity(0.8),
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15),
-                                        // overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                     const Spacer(),
                                     IconBottonEdit(
-                                        icon: Icons.more_vert, ontap: () {})
+                                        icon: Icons.more_vert,
+                                        ontap: () {
+                                          ShowBottomSheetEdit(context);
+                                          //
+                                        })
                                   ],
                                 ),
                                 const Text("SokLay"),
