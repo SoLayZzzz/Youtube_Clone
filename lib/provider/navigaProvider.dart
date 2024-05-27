@@ -6,6 +6,8 @@ import 'package:youtube_clone/navigation/short.dart';
 import 'package:youtube_clone/navigation/subscription.dart';
 
 class NavigaProvider extends ChangeNotifier {
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+
   int _selectIndex = 0;
   List<NavigaEdit> item = [
     NavigaEdit(label: "Home", icon: Icons.home, widget: const HomePage()),
@@ -28,6 +30,14 @@ class NavigaProvider extends ChangeNotifier {
   set selectIndex(int value) {
     _selectIndex = value;
     notifyListeners();
+  }
+
+  void openDrawer() {
+    scaffoldKey.currentState?.openDrawer();
+  }
+
+  void closeDrawer() {
+    scaffoldKey.currentState?.closeDrawer();
   }
 }
 

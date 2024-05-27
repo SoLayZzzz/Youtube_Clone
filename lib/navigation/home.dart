@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:youtube_clone/color/color.dart';
 import 'package:youtube_clone/component/iconbotton.dart';
 import 'package:youtube_clone/provider/homeProvider.dart';
+import 'package:youtube_clone/provider/navigaProvider.dart';
+import 'package:youtube_clone/view/MyDrawer.dart';
 import 'package:youtube_clone/view/homeView.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,11 +23,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.initState();
 
     homeProvider = Provider.of<HomeProvider>(context, listen: false);
-    homeProvider.onInit();
+    _tabcontroller = TabController(
+        length:
+            homeProvider.homecate.isEmpty ? 0 : homeProvider.homecate.length,
+        vsync: this);
 
-    _tabcontroller =
-        TabController(length: homeProvider.homecate.length, vsync: this);
+    _tabcontroller.animateTo(1);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      homeProvider.onInit();
+    });
+
     _tabcontroller.addListener(() {
+      if (_tabcontroller.index == 0) {
+        context.read<NavigaProvider>().scaffoldKey;
+        return;
+      }
       homeProvider.filterByIndex(_tabcontroller.index);
     });
   }
@@ -34,9 +47,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Consumer<HomeProvider>(builder: (context, provider, _) {
       return DefaultTabController(
-        length: provider.homecate.length,
+        length: provider.homecate.isEmpty ? provider.homecate.length : 0,
         child: SafeArea(
             child: Scaffold(
+          backgroundColor: noColor,
+          drawer: MyDrawer(),
           appBar: _appBar(),
           body: _buildBody(),
         )),
@@ -56,6 +71,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   AppBar _appBar() {
     return AppBar(
+      automaticallyImplyLeading: false,
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: false,
@@ -99,13 +115,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         controller: _tabcontroller,
         dividerColor: noColor,
         indicatorColor: noColor,
-        onTap: homeProvider.filterByIndex,
         tabAlignment: TabAlignment.start,
         tabs: homeProvider.homecate.map((e) {
           if (e.icon != null) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: e.icon!,
+            return InkWell(
+              onTap: () {
+                context.read<NavigaProvider>().openDrawer();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: e.icon!,
+              ),
             );
           }
           return Tab(

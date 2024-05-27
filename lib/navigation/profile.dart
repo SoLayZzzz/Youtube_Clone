@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_clone/color/color.dart';
 import 'package:youtube_clone/component/iconbotton.dart';
-import 'package:youtube_clone/category/profileCate.dart';
+import 'package:youtube_clone/component/profile/profileCate.dart';
 import 'package:youtube_clone/component/profile/option.dart';
 import 'package:youtube_clone/list/list_history.dart';
 import 'package:youtube_clone/list/list_playlists.dart';

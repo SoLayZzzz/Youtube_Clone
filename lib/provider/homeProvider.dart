@@ -7,19 +7,27 @@ class HomeProvider extends ChangeNotifier {
 
   HomeProvider({required this.homeRepository});
 
-  var homecate = <HomeCategory>[];
-  final data = <DataYouTube>[];
+  var homecate = HomeCategory.getHomeCate();
+  var data = <DataYouTube>[];
 
-  List<DataYouTube> alldata = [];
+  List<DataYouTube> alldata = DataYouTube.dataYT;
+  var triggerDrawer = true;
 
   void onInit() {
-    homecate = homeRepository.getDataYTCate();
+    filterByIndex(1);
+    triggleAppDrawer();
   }
 
   void filterByIndex(int idx) {
     final cate = homecate[idx];
     final tmp = alldata.where((e) => e.category == cate.title).toList();
-    data.addAll(tmp);
+    data = tmp;
+    notifyListeners();
+  }
+
+  void triggleAppDrawer() {
+    debugPrint("trigger");
+    triggerDrawer = true;
     notifyListeners();
   }
 }
